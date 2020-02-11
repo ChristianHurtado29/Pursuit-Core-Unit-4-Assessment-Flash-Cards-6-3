@@ -10,8 +10,6 @@ import UIKit
 
 class SearchCell: UICollectionViewCell {
     
-    
-    
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
@@ -40,6 +38,7 @@ class SearchCell: UICollectionViewCell {
     }
     
     private func commonInit() {
+        setUpLabelConstraints()
 
     }
     
@@ -51,6 +50,10 @@ class SearchCell: UICollectionViewCell {
             questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -10),
             questionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10)
         ])
+    }
+    
+    public func configureCell(for card: Cards) {
+        questionLabel.text = card.quizTitle
     }
     
 }

@@ -8,12 +8,9 @@
 
 import Foundation
 
-struct Cards: Codable & Equatable {
-    let cards: [CardInfo]
-}
 
-struct CardInfo: Codable & Equatable {
+struct Cards: Codable & Equatable {
     let id: String
-    let cardTitle: String
+    let quizTitle: String
     let facts: [String]
 }

@@ -13,6 +13,7 @@ class SearchView: UIView {
     public lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: 120, height: 120)
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cv.backgroundColor = .systemBlue
         return cv
@@ -35,12 +36,10 @@ class SearchView: UIView {
     private func collectionViewConstraints() {
         addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor), collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-            
         ])
     }
 }
