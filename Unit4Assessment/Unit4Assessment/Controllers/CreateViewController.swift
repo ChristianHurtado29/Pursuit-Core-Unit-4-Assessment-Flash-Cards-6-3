@@ -8,13 +8,21 @@
 
 import UIKit
 
-class CreateVC: UIViewController {
+class CreateViewController: UIViewController {
+    
+    private var createView = CreateView()
 
+    override func loadView() {
+        view = createView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemPink
 
-     
     }
+    
+    
     
 
 }

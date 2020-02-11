@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1347C03B23F2FCE700B3BAE8 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347C03A23F2FCE700B3BAE8 /* CardsViewController.swift */; };
 		1347C03E23F2FD1500B3BAE8 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1347C03D23F2FD1500B3BAE8 /* ImageKit */; };
-		1347C04023F2FEE000B3BAE8 /* CreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347C03F23F2FEE000B3BAE8 /* CreateVC.swift */; };
+		1347C04023F2FEE000B3BAE8 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347C03F23F2FEE000B3BAE8 /* CreateViewController.swift */; };
 		1347C04223F2FEEA00B3BAE8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347C04123F2FEEA00B3BAE8 /* SearchViewController.swift */; };
 		1382584C23F30206005438E8 /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1382584B23F30206005438E8 /* CardsView.swift */; };
 		1382584E23F30357005438E8 /* CardsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1382584D23F30357005438E8 /* CardsCell.swift */; };
@@ -19,6 +19,7 @@
 		1382585623F32E91005438E8 /* CardsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1382585523F32E91005438E8 /* CardsAPIClient.swift */; };
 		1382585A23F336D9005438E8 /* cards.json in Resources */ = {isa = PBXBuildFile; fileRef = 1382585923F336D9005438E8 /* cards.json */; };
 		1382585C23F337EE005438E8 /* JSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1382585B23F337EE005438E8 /* JSONData.swift */; };
+		1382585E23F355E8005438E8 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1382585D23F355E8005438E8 /* CreateView.swift */; };
 		5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239723F2EE39000AA216 /* AppDelegate.swift */; };
 		5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239923F2EE39000AA216 /* SceneDelegate.swift */; };
 		5790239C23F2EE39000AA216 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239B23F2EE39000AA216 /* TabBarController.swift */; };
@@ -39,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		1347C03A23F2FCE700B3BAE8 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
-		1347C03F23F2FEE000B3BAE8 /* CreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVC.swift; sourceTree = "<group>"; };
+		1347C03F23F2FEE000B3BAE8 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		1347C04123F2FEEA00B3BAE8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1382584B23F30206005438E8 /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
 		1382584D23F30357005438E8 /* CardsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsCell.swift; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		1382585523F32E91005438E8 /* CardsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAPIClient.swift; sourceTree = "<group>"; };
 		1382585923F336D9005438E8 /* cards.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cards.json; sourceTree = "<group>"; };
 		1382585B23F337EE005438E8 /* JSONData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONData.swift; sourceTree = "<group>"; };
+		1382585D23F355E8005438E8 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		5790239423F2EE39000AA216 /* Unit4Assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit4Assessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5790239723F2EE39000AA216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5790239923F2EE39000AA216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1382585F23F355F5005438E8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1382585523F32E91005438E8 /* CardsAPIClient.swift */,
+				1382585B23F337EE005438E8 /* JSONData.swift */,
+				1382585923F336D9005438E8 /* cards.json */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		1382586023F3560D005438E8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5790239B23F2EE39000AA216 /* TabBarController.swift */,
+				1347C03A23F2FCE700B3BAE8 /* CardsViewController.swift */,
+				1347C03F23F2FEE000B3BAE8 /* CreateViewController.swift */,
+				1347C04123F2FEEA00B3BAE8 /* SearchViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		13A2B0C223F3569400842187 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1382584B23F30206005438E8 /* CardsView.swift */,
+				1382585D23F355E8005438E8 /* CreateView.swift */,
+				1382585123F316D0005438E8 /* SearchView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		13A2B0C323F3569E00842187 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1382584D23F30357005438E8 /* CardsCell.swift */,
+				1382585323F31BE0005438E8 /* SearchCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		13A2B0C423F356B900842187 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1382584F23F311B1005438E8 /* CardsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		5790238B23F2EE39000AA216 = {
 			isa = PBXGroup;
 			children = (
@@ -103,18 +153,11 @@
 			children = (
 				5790239723F2EE39000AA216 /* AppDelegate.swift */,
 				5790239923F2EE39000AA216 /* SceneDelegate.swift */,
-				5790239B23F2EE39000AA216 /* TabBarController.swift */,
-				1382585523F32E91005438E8 /* CardsAPIClient.swift */,
-				1382585B23F337EE005438E8 /* JSONData.swift */,
-				1382585923F336D9005438E8 /* cards.json */,
-				1382584F23F311B1005438E8 /* CardsModel.swift */,
-				1347C03A23F2FCE700B3BAE8 /* CardsViewController.swift */,
-				1382584B23F30206005438E8 /* CardsView.swift */,
-				1382584D23F30357005438E8 /* CardsCell.swift */,
-				1347C03F23F2FEE000B3BAE8 /* CreateVC.swift */,
-				1347C04123F2FEEA00B3BAE8 /* SearchViewController.swift */,
-				1382585123F316D0005438E8 /* SearchView.swift */,
-				1382585323F31BE0005438E8 /* SearchCell.swift */,
+				13A2B0C423F356B900842187 /* Model */,
+				1382585F23F355F5005438E8 /* Network */,
+				1382586023F3560D005438E8 /* Controllers */,
+				13A2B0C223F3569400842187 /* Views */,
+				13A2B0C323F3569E00842187 /* Cells */,
 				579023A023F2EE3B000AA216 /* Assets.xcassets */,
 				579023A223F2EE3B000AA216 /* LaunchScreen.storyboard */,
 				579023A523F2EE3B000AA216 /* Info.plist */,
@@ -242,12 +285,13 @@
 				1382585423F31BE0005438E8 /* SearchCell.swift in Sources */,
 				1382585023F311B1005438E8 /* CardsModel.swift in Sources */,
 				1382584C23F30206005438E8 /* CardsView.swift in Sources */,
+				1382585E23F355E8005438E8 /* CreateView.swift in Sources */,
 				1347C04223F2FEEA00B3BAE8 /* SearchViewController.swift in Sources */,
 				1382584E23F30357005438E8 /* CardsCell.swift in Sources */,
 				5790239C23F2EE39000AA216 /* TabBarController.swift in Sources */,
 				1382585C23F337EE005438E8 /* JSONData.swift in Sources */,
 				1347C03B23F2FCE700B3BAE8 /* CardsViewController.swift in Sources */,
-				1347C04023F2FEE000B3BAE8 /* CreateVC.swift in Sources */,
+				1347C04023F2FEE000B3BAE8 /* CreateViewController.swift in Sources */,
 				1382585623F32E91005438E8 /* CardsAPIClient.swift in Sources */,
 				5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */,
 				5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */,

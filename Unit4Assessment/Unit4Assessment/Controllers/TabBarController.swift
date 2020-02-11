@@ -26,8 +26,8 @@ class TabBarController: UITabBarController {
       return viewController
     }()
     
-    private lazy var createVC: CreateVC = {
-        let viewController = CreateVC()
+    private lazy var createVC: CreateViewController = {
+        let viewController = CreateViewController()
         viewController.tabBarItem = UITabBarItem(title: "Create", image: UIImage(systemName: "mic"), tag: 1)
         return viewController
     }()
@@ -39,12 +39,10 @@ class TabBarController: UITabBarController {
     }()
     
     
-    
-    
   override func viewDidLoad() {
     super.viewDidLoad()
     viewControllers = [UINavigationController(rootViewController: cardsVC),
-                       createVC, searchVC    
+                       UINavigationController(rootViewController: createVC), searchVC
     ]
     
   }

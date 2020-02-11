@@ -18,6 +18,11 @@ class SearchCell: UICollectionViewCell {
         return label
     }()
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(animate))
+        return gesture
+    }()
     
     private lazy var factsLabel: UILabel = {
         let label = UILabel()
@@ -37,6 +42,16 @@ class SearchCell: UICollectionViewCell {
       commonInit()
     }
     
+    @objc private func animate(){
+    let duration: Double = 1.2
+    let curveOption: UIView.AnimationOptions = .curveEaseInOut
+        
+        
+    // the four built-in bezier animations curves
+    // curveEaseIn
+    // curveEaseOut
+    // curveLinear
+    }
     private func commonInit() {
         setUpLabelConstraints()
 
@@ -46,7 +61,7 @@ class SearchCell: UICollectionViewCell {
         addSubview(questionLabel)
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            questionLabel.topAnchor.constraint(equalTo: topAnchor, constant:  10),
+            questionLabel.topAnchor.constraint(equalTo: topAnchor, constant:  140),
             questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -10),
             questionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10)
         ])
