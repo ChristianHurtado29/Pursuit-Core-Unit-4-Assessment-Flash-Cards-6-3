@@ -18,11 +18,15 @@ class CreateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = .init(title: "Post", style: .plain, target: self, action: #selector(printTest))
         view.backgroundColor = .systemPink
 
     }
     
-    
+    @objc
+    func printTest(){
+        print("hola")
+    }
     
 
 }
