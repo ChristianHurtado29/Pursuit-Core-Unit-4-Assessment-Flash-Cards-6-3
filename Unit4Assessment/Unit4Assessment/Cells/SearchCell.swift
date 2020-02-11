@@ -32,6 +32,11 @@ class SearchCell: UICollectionViewCell {
         return label
     }()
     
+    public lazy var button: UIButton = {
+        let button = UIButton()
+        return button
+    }()
+    
     override init(frame: CGRect) {
       super.init(frame: frame)
       commonInit()
@@ -46,24 +51,32 @@ class SearchCell: UICollectionViewCell {
     let duration: Double = 1.2
     let curveOption: UIView.AnimationOptions = .curveEaseInOut
         
-        
     // the four built-in bezier animations curves
     // curveEaseIn
     // curveEaseOut
     // curveLinear
     }
     private func commonInit() {
-        setUpLabelConstraints()
-
+        setupLabelConstraints()
+        setupButton()
     }
     
-    private func setUpLabelConstraints() {
+    private func setupLabelConstraints() {
         addSubview(questionLabel)
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             questionLabel.topAnchor.constraint(equalTo: topAnchor, constant:  140),
             questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -10),
             questionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10)
+        ])
+    }
+    
+    private func setupButton(){
+        addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         ])
     }
     

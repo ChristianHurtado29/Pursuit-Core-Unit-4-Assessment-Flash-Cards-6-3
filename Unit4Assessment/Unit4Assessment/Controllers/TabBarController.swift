@@ -11,30 +11,30 @@ import DataPersistence
 
 class TabBarController: UITabBarController {
     
-    private var dataPersistence = DataPersistence<String>(filename: "flashCards.plist")
+    // ADDITION: injecting userPreference into newsFeedVC
+    //    viewController.userPreference = userPreference
+        // ADDITION: setting the newsFeedVC as the delegate object for UserPreference (it will now listen for changes done in the SettingsViewController picker view on UserDefaults)
+    //    viewController.userPreference.delegate = viewController
 
     
+    private var dataPersistence = DataPersistence<Cards>(filename: "flashCards.plist")
+
     private lazy var cardsVC: CardsViewController = {
       let viewController = CardsViewController()
-      viewController.tabBarItem = UITabBarItem(title: "Cards", image: UIImage(systemName: "eyeglasses"), tag: 0)
+      viewController.tabBarItem = UITabBarItem(title: "Cards", image: UIImage(systemName: "creditcard"), tag: 0)
       viewController.dataPersistence = dataPersistence
-      
-      // ADDITION: injecting userPreference into newsFeedVC
-  //    viewController.userPreference = userPreference
-      // ADDITION: setting the newsFeedVC as the delegate object for UserPreference (it will now listen for changes done in the SettingsViewController picker view on UserDefaults)
-  //    viewController.userPreference.delegate = viewController
-      return viewController
+        return viewController
     }()
     
     private lazy var createVC: CreateViewController = {
         let viewController = CreateViewController()
-        viewController.tabBarItem = UITabBarItem(title: "Create", image: UIImage(systemName: "mic"), tag: 1)
+        viewController.tabBarItem = UITabBarItem(title: "Create", image: UIImage(systemName: "plusminus"), tag: 1)
         return viewController
     }()
     
     private lazy var searchVC: SearchViewController = {
         let viewController = SearchViewController()
-        viewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName:"mic"), tag: 2)
+        viewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName:"tray.fill"), tag: 2)
         return viewController
     }()
     

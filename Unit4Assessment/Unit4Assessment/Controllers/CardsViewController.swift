@@ -12,6 +12,8 @@ import DataPersistence
 class CardsViewController: UIViewController {
     
     private let cardsView = CardsView()
+    public var dataPersistence = DataPersistence<Cards>(filename: "cards.plist")
+
     
     private var flashCards = [Cards]() {
         didSet{
@@ -19,7 +21,6 @@ class CardsViewController: UIViewController {
         }
     }
     
-    public var dataPersistence: DataPersistence<String>!
 
     override func viewDidLoad() {
         super.viewDidLoad()

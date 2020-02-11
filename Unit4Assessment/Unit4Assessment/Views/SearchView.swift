@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DataPersistence
 
 class SearchView: UIView {
     
@@ -18,6 +19,7 @@ class SearchView: UIView {
         cv.backgroundColor = .systemBlue
         return cv
     }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)

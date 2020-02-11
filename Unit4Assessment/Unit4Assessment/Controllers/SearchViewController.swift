@@ -12,8 +12,7 @@ import DataPersistence
 class SearchViewController: UIViewController {
     
     private var searchView = SearchView()
-    
-    //  public var dataPersistence = DataPersistence<CardInfo>()
+    public var dataPersistence = DataPersistence<Cards>(filename: "cards.plist")
     
     private var queCards = [Cards]() {
         didSet{
