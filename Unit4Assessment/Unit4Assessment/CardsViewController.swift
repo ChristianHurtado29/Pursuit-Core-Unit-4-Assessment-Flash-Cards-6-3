@@ -13,7 +13,7 @@ class CardsViewController: UIViewController {
     
     private let cardsView = CardsView()
     
-    private var flashCards = [CardInfo]() {
+    private var flashCards = [Cards]() {
         didSet{
             self.cardsView.cardsCollection.reloadData()
         }
@@ -23,14 +23,22 @@ class CardsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getCards()
         cardsView.cardsCollection.dataSource = self
         cardsView.cardsCollection.delegate = self
         cardsView.cardsCollection.register(CardsCell.self, forCellWithReuseIdentifier: "cardsCell")
-      
     }
     
-
+    private func getCards(){
+        CardsAPIClient.getCards { [weak self] (result) in
+        switch result {
+        case .failure(let appError):
+            print("error: \(appError)")
+        case .success(let cards):
+            self?.flashCards = cards
+    }
+  }
+}
 }
 
 extension CardsViewController: UICollectionViewDataSource {
