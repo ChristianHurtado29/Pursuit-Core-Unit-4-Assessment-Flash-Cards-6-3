@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import DataPersistence
 
-class InitialVC: UIViewController {
+class CardsVC: UIViewController {
+    
+    public var dataPersistence: DataPersistence<String>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
