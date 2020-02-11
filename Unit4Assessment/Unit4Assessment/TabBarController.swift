@@ -14,8 +14,8 @@ class TabBarController: UITabBarController {
     private var dataPersistence = DataPersistence<String>(filename: "flashCards.plist")
 
     
-    private lazy var cardsVC: CardsVC = {
-      let viewController = CardsVC()
+    private lazy var cardsVC: CardsViewController = {
+      let viewController = CardsViewController()
       viewController.tabBarItem = UITabBarItem(title: "Cards", image: UIImage(systemName: "eyeglasses"), tag: 0)
       viewController.dataPersistence = dataPersistence
       
@@ -32,8 +32,8 @@ class TabBarController: UITabBarController {
         return viewController
     }()
     
-    private lazy var searchVC: SearchVC = {
-        let viewController = SearchVC()
+    private lazy var searchVC: SearchViewController = {
+        let viewController = SearchViewController()
         viewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName:"mic"), tag: 2)
         return viewController
     }()
