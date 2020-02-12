@@ -15,9 +15,7 @@ protocol CellDetDelegate: AnyObject {
 class CardsCell: UICollectionViewCell {
     
     weak var delegate: CellDetDelegate?
-    
     public var selCard: Cards!
-    
     public var isAnswer = false
     
     private lazy var longPressGesture: UILongPressGestureRecognizer = {
@@ -98,6 +96,21 @@ class CardsCell: UICollectionViewCell {
         addGestureRecognizer(longPressedGesture)
     }
     
+    @objc private func animate(){
+        let duration: Double = 1.2
+        if isAnswer{
+            UIView.transition(with: self, duration: duration, options: [.transitionFlipFromLeft], animations: {
+              self.questionLabel.alpha = 0.0
+              self.answersLabel.alpha = 1.0
+            }, completion: nil)
+        } else {
+            UIView.transition(with: self, duration: duration, options: [.transitionFlipFromRight], animations: {
+              self.questionLabel.alpha = 1.0
+              self.answersLabel.alpha = 0.0
+            }, completion: nil)
+        }
+    }
+    
     private func setupLabelConstraints() {
         addSubview(questionLabel)
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -128,22 +141,6 @@ class CardsCell: UICollectionViewCell {
             optionsButton.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
-    
-    @objc private func animate(){
-        let duration: Double = 1.2
-        if isAnswer{
-            UIView.transition(with: self, duration: duration, options: [.transitionFlipFromLeft], animations: {
-              self.questionLabel.alpha = 0.0
-              self.answersLabel.alpha = 1.0
-            }, completion: nil)
-        } else {
-            UIView.transition(with: self, duration: duration, options: [.transitionFlipFromRight], animations: {
-              self.questionLabel.alpha = 1.0
-              self.answersLabel.alpha = 0.0
-            }, completion: nil)
-        }
-    }
-    
     
     public func configureCell(for card: Cards) {
         questionLabel.text = card.quizTitle

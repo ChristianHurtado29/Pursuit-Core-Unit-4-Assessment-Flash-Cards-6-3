@@ -9,7 +9,13 @@
 import UIKit
 import DataPersistence
 
+protocol SaveCardsDel: AnyObject {
+    func didCreateCard(card: Cards)
+}
+
 class CardsView: UIView {
+    
+    weak var delegate: SaveCardsDel?  // might be wrong
     
     public lazy var cardsCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -30,6 +36,10 @@ class CardsView: UIView {
     }
     
     private func commoninit(){
+        setupCardsCollectionView()
+    }
+    
+    private func setupCardsCollectionView(){
         addSubview(cardsCollection)
         cardsCollection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

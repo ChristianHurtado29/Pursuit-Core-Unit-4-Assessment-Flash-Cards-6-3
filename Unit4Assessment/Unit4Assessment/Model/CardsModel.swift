@@ -10,7 +10,7 @@ import Foundation
 
 
 struct Cards: Codable & Equatable {
-    let id: String
+//    let id: String
     let quizTitle: String
     let facts: [String]
 }

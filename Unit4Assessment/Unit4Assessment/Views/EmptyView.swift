@@ -25,6 +25,8 @@ class EmptyView: UIView {
         return label
     }()
     
+    // Alex's NYT
+    
     init(title: String, message: String) {
         super.init(frame: UIScreen.main.bounds)
         titleLabel.text = title

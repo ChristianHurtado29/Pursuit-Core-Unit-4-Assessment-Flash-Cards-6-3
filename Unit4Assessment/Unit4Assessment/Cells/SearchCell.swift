@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import DataPersistence
 
 class SearchCell: UICollectionViewCell {
+    
+    weak var delegate: SaveCardsDel?
+    
+    public var selCard: Cards?
+    
+    // have to review optionals on these calls
     
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
@@ -28,7 +35,7 @@ class SearchCell: UICollectionViewCell {
     
     public lazy var button: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
@@ -37,24 +44,24 @@ class SearchCell: UICollectionViewCell {
         let gesture = UILongPressGestureRecognizer()
         gesture.addTarget(self, action: #selector(didLongPress(_:)))
         return gesture
-      }()
-
+    }()
+    
     @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began || gesture.state == .changed {
-          return
+            return
         }
         isAnswer.toggle()
         animate()
-      }
+    }
     
     override init(frame: CGRect) {
-      super.init(frame: frame)
-      commonInit()
+        super.init(frame: frame)
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
-      super.init(coder: coder)
-      commonInit()
+        super.init(coder: coder)
+        commonInit()
     }
     
     private var isAnswer = false
@@ -63,24 +70,25 @@ class SearchCell: UICollectionViewCell {
         let duration: Double = 1.2
         if isAnswer{
             UIView.transition(with: self, duration: duration, options: [.transitionFlipFromLeft], animations: {
-              self.questionLabel.alpha = 0.0
-              self.factsLabel.alpha = 1.0
+                self.questionLabel.alpha = 0.0
+                self.factsLabel.alpha = 1.0
             }, completion: nil)
         } else {
             UIView.transition(with: self, duration: duration, options: [.transitionFlipFromRight], animations: {
-              self.questionLabel.alpha = 1.0
-              self.factsLabel.alpha = 0.0
+                self.questionLabel.alpha = 1.0
+                self.factsLabel.alpha = 0.0
             }, completion: nil)
         }
     }
     
-    
-    
     @objc private func buttonPressed(){
-        let showAlert = UIAlertController(title: "Add?", message: "Add card to your flashcards?", preferredStyle: .alert)
-        showAlert.addAction(UIAlertAction(title: "Add", style: .default, handler: nil))
-        
+//        let showAlert = UIAlertController(title: "Added", message: "Successfully added flashcard to your cards.", preferredStyle: .alert)
+//        showAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        print("hellloooo")
+        if let card = selCard {
+        delegate?.didCreateCard(card: card)
         print("hola")
+        }
     }
     private func commonInit() {
         setupLabelConstraints()
@@ -111,7 +119,7 @@ class SearchCell: UICollectionViewCell {
     
     private func setupButton(){
         addSubview(button)
-        button.backgroundColor = .white
+        button.backgroundColor = .clear
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             button.topAnchor.constraint(equalTo: topAnchor, constant: 5),
@@ -130,9 +138,5 @@ class SearchCell: UICollectionViewCell {
         2 - \(card.facts[1])
         """
         factsLabel.alpha = 0.0
-        
-        
-        
     }
-    
 }

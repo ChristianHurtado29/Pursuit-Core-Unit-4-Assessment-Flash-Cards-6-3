@@ -42,6 +42,18 @@ class CreateView: UIView {
         return tv
     }()
     
+    public lazy var saveButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = "Save"
+        return button
+    }()
+    
+    public lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = "Cancel"
+        return button
+    }()
+    
     override init(frame: CGRect){
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -58,6 +70,8 @@ class CreateView: UIView {
         constrainFirstTextView()
         constrainSecondLabel()
         constrainSecondTextView()
+        constrainSaveButton()
+
     }
     
     private func constrainTextField(){
@@ -111,5 +125,18 @@ class CreateView: UIView {
             secondTextView.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
+    
+    private func constrainSaveButton(){
+        addSubview(saveButton)
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            saveButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            saveButton.heightAnchor.constraint(equalToConstant: 120),
+            saveButton.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -20)
+            
+        ])
+    }
 
 }
+

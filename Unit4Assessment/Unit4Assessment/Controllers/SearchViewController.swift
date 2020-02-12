@@ -32,6 +32,7 @@ class SearchViewController: UIViewController {
         searchView.collectionView.dataSource = self
         searchView.collectionView.register(SearchCell.self, forCellWithReuseIdentifier: "searchCell")
         searchView.collectionView.delegate = self
+        
          getCards()
     }
     
@@ -58,7 +59,8 @@ extension SearchViewController: UICollectionViewDataSource {
         }
         let card = queCards[indexPath.row]
         cell.configureCell(for: card)
-        cell.backgroundColor = .gray
+        cell.delegate = self
+        cell.backgroundColor = .white
         return cell
     }
     
@@ -76,5 +78,21 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout{
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+}
+
+extension SearchViewController: SaveCardsDel {
+    func didCreateCard(card: Cards) {
+        if dataPersistence.hasItemBeenSaved(card) {
+            showAlert(title: "Can't save: card already exists", message: "no repeats")
+            return
+        }
+        do {
+            try dataPersistence.createItem(card)
+            showAlert(title: "Success!", message: "flashcard added!")
+        } catch {
+            print("error: \(error)")
+            showAlert(title: "Unsuccessful", message: "error: \(error)")
+        }
     }
 }
