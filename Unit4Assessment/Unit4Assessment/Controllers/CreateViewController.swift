@@ -12,6 +12,7 @@ import DataPersistence
 class CreateViewController: UIViewController {
     
     weak var delegate: SaveCardsDel?
+    weak var delegate2: CellDetDelegate?
     
     private var createView = CreateView()
     public var dataPersistence = DataPersistence<Cards>(filename: "cards.plist")

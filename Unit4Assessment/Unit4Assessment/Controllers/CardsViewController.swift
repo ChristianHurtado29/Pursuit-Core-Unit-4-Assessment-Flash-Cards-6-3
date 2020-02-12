@@ -13,8 +13,6 @@ class CardsViewController: UIViewController {
     
     private let cardsView = CardsView()
     
-    
-    
     private var flashCards = [Cards]() {
         didSet{
             self.cardsView.cardsCollection.reloadData()
@@ -44,6 +42,7 @@ class CardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCards()
+        cardsView.cardsCollection.delegate = self
         cardsView.cardsCollection.dataSource = self
         cardsView.cardsCollection.delegate = self
         cardsView.cardsCollection.register(CardsCell.self, forCellWithReuseIdentifier: "cardsCell")
@@ -69,10 +68,10 @@ extension CardsViewController: UICollectionViewDataSource {
         }
         
         let pickedCard = flashCards[indexPath.row]
+        cell.delegate = self
         cell.backgroundColor = .purple
         cell.selCard = pickedCard
         cell.configureCell(for: pickedCard)
-        
         return cell
     }
 }
@@ -100,6 +99,7 @@ extension CardsViewController: CellDetDelegate {
     
     private func deleteCard(card: Cards) {
         guard let index = flashCards.firstIndex(of: card) else {
+            loadCards()
             return
         }
         do{
@@ -110,3 +110,4 @@ extension CardsViewController: CellDetDelegate {
         }
     }
 }
+

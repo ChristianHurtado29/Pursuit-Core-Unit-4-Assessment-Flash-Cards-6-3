@@ -32,8 +32,7 @@ class SearchViewController: UIViewController {
         searchView.collectionView.dataSource = self
         searchView.collectionView.register(SearchCell.self, forCellWithReuseIdentifier: "searchCell")
         searchView.collectionView.delegate = self
-        
-         getCards()
+        getCards()
     }
     
     private func getCards(){
@@ -44,8 +43,6 @@ class SearchViewController: UIViewController {
             print(error)
         }
     }
-    
-    
 }
 
 extension SearchViewController: UICollectionViewDataSource {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DataPersistence
 
 protocol CellDetDelegate: AnyObject {
     func didPressButton(cell: CardsCell, card: Cards)
@@ -17,6 +18,9 @@ class CardsCell: UICollectionViewCell {
     weak var delegate: CellDetDelegate?
     public var selCard: Cards!
     public var isAnswer = false
+    
+    weak var delegate2: SaveCardsDel?
+    public var dataPersistence = DataPersistence<Cards>(filename: "cards.plist")
     
     private lazy var longPressGesture: UILongPressGestureRecognizer = {
         let gesture = UILongPressGestureRecognizer()
@@ -70,6 +74,7 @@ class CardsCell: UICollectionViewCell {
     
     @objc public func optionsButtonPressed(_ sender: UIButton) {
         delegate?.didPressButton(cell: self, card: selCard)
+        print("options button pressed")
     }
     
     @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
