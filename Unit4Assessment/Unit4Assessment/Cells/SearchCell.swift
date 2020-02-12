@@ -15,7 +15,7 @@ class SearchCell: UICollectionViewCell {
     
     public var selCard: Cards?
     
-    // have to review optionals on these calls
+    public var dataPersistence = DataPersistence<Cards>(filename: "cards.plist")
     
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
@@ -84,6 +84,11 @@ class SearchCell: UICollectionViewCell {
     @objc private func buttonPressed(){
 //        let showAlert = UIAlertController(title: "Added", message: "Successfully added flashcard to your cards.", preferredStyle: .alert)
 //        showAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let newCard = Cards(quizTitle: questionLabel.text!, facts: ["\(factsLabel)"])
+        do  { try dataPersistence.createItem(newCard)
+        } catch {
+            print("error: \(error)")
+        }
         print("hellloooo")
         if let card = selCard {
         delegate?.didCreateCard(card: card)

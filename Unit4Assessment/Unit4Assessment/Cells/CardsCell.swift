@@ -42,7 +42,7 @@ class CardsCell: UICollectionViewCell {
     
     public lazy var optionsButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
         button.addTarget(self, action: #selector(optionsButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
