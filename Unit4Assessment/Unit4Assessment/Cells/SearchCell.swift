@@ -60,7 +60,10 @@ class SearchCell: UICollectionViewCell {
     }
     
     @objc private func buttonPressed(){
+        let showAlert = UIAlertController(title: "Add?", message: "Add card to your flashcards?", preferredStyle: .alert)
+        showAlert.addAction(UIAlertAction(title: "Add", style: .default, handler: nil))
         
+        print("hola")
     }
     private func commonInit() {
         setupLabelConstraints()
@@ -79,16 +82,20 @@ class SearchCell: UICollectionViewCell {
     
     private func setupButton(){
         addSubview(button)
+        button.backgroundColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            button.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            button.heightAnchor.constraint(equalToConstant: 100)
+            button.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     
     public func configureCell(for card: Cards) {
         questionLabel.text = card.quizTitle
+        questionLabel.isUserInteractionEnabled = true
+        
+        
     }
     
 }
