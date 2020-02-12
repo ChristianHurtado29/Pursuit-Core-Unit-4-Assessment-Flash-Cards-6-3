@@ -103,7 +103,7 @@ extension CardsViewController: CellDetDelegate {
             return
         }
         do{
-            try dataPersistence.deleteItem(at: index)
+            try savedCardsPersistence.deleteItem(at: index)
             showAlert(title: "Deleted", message: "card was successfully deleted")
         }catch {
             showAlert(title: "Error", message: "card could not be deleted")

@@ -29,11 +29,15 @@ class TabBarController: UITabBarController {
     private lazy var createVC: CreateViewController = {
         let viewController = CreateViewController()
         viewController.tabBarItem = UITabBarItem(title: "Create", image: UIImage(systemName: "plusminus"), tag: 1)
+        viewController.dataPersistence = dataPersistence
+
         return viewController
     }()
     
     private lazy var searchVC: SearchViewController = {
         let viewController = SearchViewController()
+        viewController.dataPersistence = dataPersistence
+
         viewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName:"tray.fill"), tag: 2)
         return viewController
     }()
