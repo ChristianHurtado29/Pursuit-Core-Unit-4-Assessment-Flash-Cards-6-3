@@ -60,7 +60,7 @@ class SearchCell: UICollectionViewCell {
     private var isAnswer = false
     
     @objc private func animate(){
-    let duration: Double = 1.2
+        let duration: Double = 1.2
         if isAnswer{
             UIView.transition(with: self, duration: duration, options: [.transitionFlipFromLeft], animations: {
               self.questionLabel.alpha = 0.0

@@ -18,22 +18,30 @@ class CardsViewController: UIViewController {
     private var flashCards = [Cards]() {
         didSet{
             self.cardsView.cardsCollection.reloadData()
+            if flashCards.isEmpty{
+                cardsView.cardsCollection.backgroundView = EmptyView(title: "View is empty", message: "Please add flashcards")
+            }
         }
     }
     
+    override func loadView() {
+        view = cardsView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         cardsView.cardsCollection.dataSource = self
         cardsView.cardsCollection.delegate = self
-        cardsView.cardsCollection.register(CardsCell.self, forCellWithReuseIdentifier: "cardsCell")
+        cardsView.cardsCollection.register(SearchCell.self, forCellWithReuseIdentifier: "searchCell")
+        view.backgroundColor = .white
     }
     
 }
 
 extension CardsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return 10
+        
+        return flashCards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -10,12 +10,12 @@ import UIKit
 import DataPersistence
 
 class CardsView: UIView {
-
+    
     public lazy var cardsCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
+        collectionView.backgroundColor = .blue
         return collectionView
     }()
 
@@ -33,6 +33,10 @@ class CardsView: UIView {
         addSubview(cardsCollection)
         cardsCollection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            cardsCollection.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            cardsCollection.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cardsCollection.trailingAnchor.constraint(equalTo: trailingAnchor),
+            cardsCollection.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }
