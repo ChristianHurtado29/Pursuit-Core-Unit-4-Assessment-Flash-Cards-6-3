@@ -34,6 +34,8 @@ class SearchCell: UICollectionViewCell {
     
     public lazy var button: UIButton = {
         let button = UIButton()
+        button.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -56,6 +58,10 @@ class SearchCell: UICollectionViewCell {
     // curveEaseOut
     // curveLinear
     }
+    
+    @objc private func buttonPressed(){
+        
+    }
     private func commonInit() {
         setupLabelConstraints()
         setupButton()
@@ -76,7 +82,8 @@ class SearchCell: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             button.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            button.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
     

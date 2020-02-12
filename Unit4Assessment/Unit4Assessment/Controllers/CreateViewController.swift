@@ -34,7 +34,6 @@ class CreateViewController: UIViewController {
     
     @objc
     func printTest(){
-        
         if createView.firstTextView.text.isEmpty || createView.secondTextView.text.isEmpty || createView.textField.text!.isEmpty{
         emptyTextFields()
         } else {

@@ -20,7 +20,7 @@ class CreateView: UIView {
     
     public lazy var firstTextLabel: UILabel = {
         let label = UILabel()
-        label.text = "Enter flashcard title:"
+        label.text = "Enter first flashcard fact:"
         return label
     }()
     
@@ -32,7 +32,7 @@ class CreateView: UIView {
     
     public lazy var secondTextLabel: UILabel = {
         let label = UILabel()
-        label.text = "Enter flashcard answer:"
+        label.text = "Enter second flashcard fact:"
         return label
     }()
     
