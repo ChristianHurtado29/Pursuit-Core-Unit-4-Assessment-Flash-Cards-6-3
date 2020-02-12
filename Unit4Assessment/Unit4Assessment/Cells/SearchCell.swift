@@ -27,9 +27,19 @@ class SearchCell: UICollectionViewCell {
     
     private lazy var factsLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.text = "facts"
+        label.alpha = 0.0
+        return label
+    }()
+    
+    private lazy var factsTwoLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        label.text = "facts 2"
+        label.alpha = 0.0
         return label
     }()
     
@@ -72,11 +82,13 @@ class SearchCell: UICollectionViewCell {
             UIView.transition(with: self, duration: duration, options: [.transitionFlipFromLeft], animations: {
                 self.questionLabel.alpha = 0.0
                 self.factsLabel.alpha = 1.0
+                self.factsTwoLabel.alpha = 1.0
             }, completion: nil)
         } else {
             UIView.transition(with: self, duration: duration, options: [.transitionFlipFromRight], animations: {
                 self.questionLabel.alpha = 1.0
                 self.factsLabel.alpha = 0.0
+                self.factsTwoLabel.alpha = 0.0
             }, completion: nil)
         }
     }
@@ -84,7 +96,7 @@ class SearchCell: UICollectionViewCell {
     @objc private func buttonPressed(){
 //        let showAlert = UIAlertController(title: "Added", message: "Successfully added flashcard to your cards.", preferredStyle: .alert)
 //        showAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        let newCard = Cards(quizTitle: questionLabel.text!, facts: ["\(factsLabel)"])
+        let newCard = Cards(quizTitle: questionLabel.text!, facts: [factsLabel.text!, factsTwoLabel.text!])
         do  { try dataPersistence.createItem(newCard)
         } catch {
             print("error: \(error)")
@@ -98,6 +110,7 @@ class SearchCell: UICollectionViewCell {
     private func commonInit() {
         setupLabelConstraints()
         setupFactsConstraints()
+        setupFactsTwoConstraints()
         setupButton()
         addGestureRecognizer(longPressedGesture)
     }
@@ -122,6 +135,16 @@ class SearchCell: UICollectionViewCell {
         ])
     }
     
+    private func setupFactsTwoConstraints() {
+        addSubview(factsTwoLabel)
+        factsTwoLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            factsTwoLabel.topAnchor.constraint(equalTo: factsLabel.bottomAnchor, constant: 5),
+            factsTwoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            factsTwoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10)
+        ])
+    }
+    
     private func setupButton(){
         addSubview(button)
         button.backgroundColor = .clear
@@ -136,12 +159,7 @@ class SearchCell: UICollectionViewCell {
     public func configureCell(for card: Cards) {
         questionLabel.isUserInteractionEnabled = true
         questionLabel.text = card.quizTitle
-        factsLabel.text =
-        """
-        1 - \(card.facts[0]),
-        
-        2 - \(card.facts[1])
-        """
-        factsLabel.alpha = 0.0
+        factsLabel.text = "1 - \(card.facts[0] ?? "no facts")"
+        factsTwoLabel.text = "2 - \(card.facts[1] ?? "no facts")"
     }
 }

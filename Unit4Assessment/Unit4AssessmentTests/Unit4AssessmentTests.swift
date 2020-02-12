@@ -6,29 +6,34 @@
 //  Copyright © 2020 Alex Paul. All rights reserved.
 //
 
+
 import XCTest
 @testable import Unit4Assessment
 
 class Unit4AssessmentTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testAPIData() {
+        let data = """
+  [{
+"id": "1",
+"quizTitle": "What is the difference between Synchronous & Asynchronous task",
+"facts": [
+"Synchronous: waits until the task have completed",
+"Asynchronous: completes a task in the background and can notify you when complete"
+    ]
+  }]
+""".data(using: .utf8)!
+        struct SwiftCard: Codable {
+            let quizTitle: String
+            let facts: [String]
+        }
+        let expTitle = "What is the difference between Synchronous & Asynchronous task"
+        do {
+            let results = try JSONDecoder().decode([SwiftCard].self, from: data)
+            let title = results.first?.quizTitle ?? ""
+            XCTAssertEqual(expTitle, title)
+        } catch {
+            XCTFail("could not decode data \(error)")
         }
     }
-
 }

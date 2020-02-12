@@ -37,6 +37,7 @@ class CardsCell: UICollectionViewCell {
         label.numberOfLines = 0
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.text = "Answers" // remove after
+        label.alpha = 0.0
         return label
     }()
     
@@ -48,9 +49,9 @@ class CardsCell: UICollectionViewCell {
     }()
     
     private lazy var longPressedGesture: UILongPressGestureRecognizer = {
-      let gesture = UILongPressGestureRecognizer()
-      gesture.addTarget(self, action: #selector(didLongPress(_:)))
-      return gesture
+        let gesture = UILongPressGestureRecognizer()
+        gesture.addTarget(self, action: #selector(didLongPress(_:)))
+        return gesture
     }()
     
     private lazy var tapGesture: UITapGestureRecognizer = {
@@ -73,20 +74,20 @@ class CardsCell: UICollectionViewCell {
     
     @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began || gesture.state == .changed {
-          return
+            return
         }
         isAnswer.toggle()
         animate()
-      }
+    }
     
     override init(frame: CGRect) {
-      super.init(frame: frame)
-      commonInit()
+        super.init(frame: frame)
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
-      super.init(coder: coder)
-      commonInit()
+        super.init(coder: coder)
+        commonInit()
     }
     
     private func commonInit() {
@@ -100,13 +101,13 @@ class CardsCell: UICollectionViewCell {
         let duration: Double = 1.2
         if isAnswer{
             UIView.transition(with: self, duration: duration, options: [.transitionFlipFromLeft], animations: {
-              self.questionLabel.alpha = 0.0
-              self.answersLabel.alpha = 1.0
+                self.questionLabel.alpha = 0.0
+                self.answersLabel.alpha = 1.0
             }, completion: nil)
         } else {
             UIView.transition(with: self, duration: duration, options: [.transitionFlipFromRight], animations: {
-              self.questionLabel.alpha = 1.0
-              self.answersLabel.alpha = 0.0
+                self.questionLabel.alpha = 1.0
+                self.answersLabel.alpha = 0.0
             }, completion: nil)
         }
     }
@@ -145,8 +146,8 @@ class CardsCell: UICollectionViewCell {
     public func configureCell(for card: Cards) {
         questionLabel.text = card.quizTitle
         answersLabel.text = """
-        1. \(card.facts[0])
-        2. \(card.facts[1])
+        1. \(card.facts.first!)
+        2. \(card.facts.last!)
         """
     }
 }

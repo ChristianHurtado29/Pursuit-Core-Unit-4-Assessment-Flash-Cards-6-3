@@ -18,8 +18,8 @@ class CreateViewController: UIViewController {
     
     public var cardTitle = ""
     public var cardFacts = [String?]()
-
-
+    
+    
     override func loadView() {
         view = createView
     }
@@ -40,37 +40,16 @@ class CreateViewController: UIViewController {
     @objc
     func printTest(){
         if createView.firstTextView.text.isEmpty || createView.secondTextView.text.isEmpty || createView.textField.text!.isEmpty{
-        emptyTextFields()
+            emptyTextFields()
         } else {
-        let showAlert = UIAlertController(title: "Saved", message: "Question successfully added", preferredStyle: .alert)
-        showAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(showAlert, animated: true, completion: nil)
-            let newCard = Cards(quizTitle: createView.textField.text!, facts: [createView.textField.text!, createView.secondTextView.text])
+            let showAlert = UIAlertController(title: "Saved", message: "Question successfully added", preferredStyle: .alert)
+            showAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(showAlert, animated: true, completion: nil)
+            let newCard = Cards(quizTitle: createView.textField.text!, facts: ["",""])
             do  { try dataPersistence.createItem(newCard)
             } catch {
                 print("error: \(error)")
             }
-            
-            
-            //TODO: Save card in view controller
+        }
     }
-    }
-    
-
 }
-
-
-//extension CreateViewController:UITextFieldDelegate{
-//
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        cardTitle = textField.text ?? ""
-//        return true
-//    }
-//}
-//
-//extension CreateViewController:UITextViewDelegate{
-//
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        cardFacts[0] = textField.text
-//    }
-//}
