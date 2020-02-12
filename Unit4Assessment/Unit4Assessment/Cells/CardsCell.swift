@@ -8,14 +8,22 @@
 
 import UIKit
 
+protocol CellDetDelegate: AnyObject {
+    func didPressButton(cell: CardsCell, card: Cards)
+}
+
 class CardsCell: UICollectionViewCell {
     
-    public lazy var cardsImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "mic")
-        iv.backgroundColor = .blue
-        iv.contentMode = .scaleAspectFill
-        return iv
+    weak var delegate: CellDetDelegate?
+    
+    public var selCard: Cards!
+    
+    public var isPressed = false
+    
+    private lazy var longPressGesture: UILongPressGestureRecognizer = {
+        let gesture = UILongPressGestureRecognizer()
+        gesture.addTarget(self, action: #selector(longPressed(_:)))
+        return gesture
     }()
     
     public lazy var questionLabel: UILabel = {
@@ -26,7 +34,12 @@ class CardsCell: UICollectionViewCell {
         return label
     }()
     
-    
+    public lazy var ellipsisButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.addTarget(self, action: #selector(ellipButtonPressed(_:)), for: .touchUpInside)
+        return button
+    }()
     
     private lazy var tapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()
@@ -34,19 +47,17 @@ class CardsCell: UICollectionViewCell {
         return gesture
     }()
     
-    
-    private func setupCardConstraint() {
-        addSubview(cardsImageView)
-        cardsImageView.translatesAutoresizingMaskIntoConstraints = false
-        cardsImageView.backgroundColor = .red
-        NSLayoutConstraint.activate([
-            cardsImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            cardsImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            cardsImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.50),
-            cardsImageView.widthAnchor.constraint(equalTo: cardsImageView.heightAnchor)
-        ])
+    @objc private func longPressed(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began || gesture.state == .changed {
+            return
+        }
+        isPressed.toggle()
+        animate()
     }
     
+    @objc public func ellipButtonPressed(_ sender: UIButton) {
+        delegate?.didPressButton(cell: self, card: selCard)
+    }
     
     @objc private func animate(){
         let duration: Double = 1.8
@@ -58,15 +69,6 @@ class CardsCell: UICollectionViewCell {
         // curveLinear
         
         
-        if cardsImageView.image == UIImage(named: "dog"){
-            UIView.transition(with: cardsImageView, duration: duration, options: [.transitionFlipFromRight, curveOption], animations:  {
-                self.cardsImageView.image = UIImage(named: "cat")
-            } , completion: nil)
-            cardsImageView.image = UIImage(named: "cat")
-        } else {
-            UIView.transition(with: cardsImageView, duration: 1.0, options: [.transitionFlipFromLeft], animations:  {
-                self.cardsImageView.image = UIImage(named: "dog")
-            } , completion: nil)
-        }
+      
     }
 }
