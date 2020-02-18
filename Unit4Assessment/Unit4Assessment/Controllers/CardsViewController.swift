@@ -90,6 +90,13 @@ extension CardsViewController: CellDetDelegate {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
             self.deleteCard(card: card)
+            do {
+                self.flashCards =  try self.savedCardsPersistence.loadItems()
+                
+                // RELOADING INFO IN REALTIME!
+            } catch {
+                error
+            }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(cancelAction)
